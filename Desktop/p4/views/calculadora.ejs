@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Calculadora de Edad de Gatos</title>
+</head>
+<body>
+    <h1>Calculadora de Edad de Gatos</h1>
+
+    <!-- Formulario para agregar nuevos gatos -->
+    <form action="/agregar-gato" method="post">
+        <label for="nombre">Nombre del gato:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre" required>
+
+        <label for="edad">Edad del gato:</label>
+        <input type="number" id="edad" name="edad" placeholder="Ingrese la edad" required>
+
+        <button type="submit">Agregar Gato</button>
+    </form>
+
+    <!-- Lista de gatos ordenados de mayor a menor edad -->
+    <h2>Gatos ingresados:</h2>
+    <ul>
+        <% gatos.sort((a, b) => b.edad - a.edad).forEach(gato => { %>
+            <li>
+                <h3><%= gato.nombre %></h3>
+                <p>Edad en años Humanos: <%= gato.edad %></p>
+                <p>Edad en años de gato: <%= calcularEdadHumana(gato.edad) %></p>
+                <p><%= gato.descripcion %></p>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>
